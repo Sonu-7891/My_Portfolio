@@ -1,13 +1,12 @@
 const CustomCursor = () => (
   <>
-    {/* Small precision dot */}
+    {/* Canvas for particle trail — luminous balls that spread & fade */}
+    <canvas id="cursor-particles" />
+
+    {/* Small precision dot — snaps to mouse */}
     <div id="cursor-dot" />
-    {/* Mirror lens — shows on hover over cards/buttons */}
-    <div id="cursor-lens">
-      <div id="cursor-lens-shine" />
-      <div id="cursor-lens-crosshair" />
-    </div>
-    {/* Outer magnetic trailing ring */}
+
+    {/* Outer trailing ring */}
     <div id="cursor-ring" />
   </>
 );
