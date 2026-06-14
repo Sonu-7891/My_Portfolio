@@ -49,6 +49,11 @@ export function useCustomCursor() {
     const canvas = document.getElementById('cursor-particles') as HTMLCanvasElement | null;
     if (!dot || !ring || !canvas) return;
 
+    // Ring hidden by default
+    ring.style.opacity = '0';
+    ring.style.width   = '0px';
+    ring.style.height  = '0px';
+
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
@@ -139,22 +144,19 @@ export function useCustomCursor() {
       const dy = my - prevMy;
       const speed = Math.sqrt(dx * dx + dy * dy);
 
-      // Spawn particles based on speed — more particles when moving faster
-      const particlesToSpawn = Math.min(Math.floor(speed * 0.4) + 1, 5);
-      spawnAccum += particlesToSpawn * 0.5;
+      // Only spawn particles when cursor is actually moving
+      if (speed > 1.5) {
+        const particlesToSpawn = Math.min(Math.floor(speed * 0.4), 5);
+        spawnAccum += particlesToSpawn * 0.5;
 
-      while (spawnAccum >= 1) {
-        spawnAccum -= 1;
-        // Spawn along the path between prev and current for smoother trails
-        const t = Math.random();
-        const sx = prevMx + (mx - prevMx) * t;
-        const sy = prevMy + (my - prevMy) * t;
-        spawnParticle(sx, sy, speed);
-      }
-
-      // Always spawn at least a slow trickle even when still
-      if (speed < 1 && Math.random() < 0.15) {
-        spawnParticle(mx + (Math.random() - 0.5) * 8, my + (Math.random() - 0.5) * 8, 1);
+        while (spawnAccum >= 1) {
+          spawnAccum -= 1;
+          // Spawn along the path between prev and current for smoother trails
+          const t = Math.random();
+          const sx = prevMx + (mx - prevMx) * t;
+          const sy = prevMy + (my - prevMy) * t;
+          spawnParticle(sx, sy, speed);
+        }
       }
 
       prevMx = mx;
@@ -221,10 +223,11 @@ export function useCustomCursor() {
       dot.style.height  = '4px';
       dot.style.opacity = '0.5';
 
-      ring.style.width       = '72px';
-      ring.style.height      = '72px';
-      ring.style.opacity     = '0.25';
-      ring.style.borderColor = 'rgba(167,139,250,0.35)';
+      // Show ring on hover
+      ring.style.width       = '56px';
+      ring.style.height      = '56px';
+      ring.style.opacity     = '1';
+      ring.style.borderColor = 'rgba(167,139,250,0.45)';
 
       // Burst: spawn a cluster of particles
       for (let i = 0; i < 12; i++) {
@@ -249,9 +252,10 @@ export function useCustomCursor() {
       dot.style.height  = '8px';
       dot.style.opacity = '1';
 
-      ring.style.width       = '36px';
-      ring.style.height      = '36px';
-      ring.style.opacity     = '1';
+      // Hide ring when not hovering
+      ring.style.width       = '0px';
+      ring.style.height      = '0px';
+      ring.style.opacity     = '0';
       ring.style.borderColor = 'rgba(6,182,212,0.45)';
     };
 
