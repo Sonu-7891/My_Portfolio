@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 400" fill="none">
+  <defs>
+    <linearGradient id="logoGrad" x1="80" y1="20" x2="220" y2="320" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#4a7c8a"/>
+      <stop offset="40%" stop-color="#2c4f5e"/>
+      <stop offset="100%" stop-color="#1a2e3a"/>
+    </linearGradient>
+    <linearGradient id="logoGradLight" x1="100" y1="40" x2="200" y2="280" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#6a9caa"/>
+      <stop offset="100%" stop-color="#2c4f5e"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Stylized S — ornate calligraphic style -->
+  <!-- Top flourish of S -->
+  <path d="M170 30 C200 20, 220 35, 210 55 C200 75, 165 60, 155 75" 
+        stroke="url(#logoGradLight)" stroke-width="8" fill="none" stroke-linecap="round"/>
+  
+  <!-- Main S body — gothic style curves -->
+  <path d="M155 75 C145 90, 100 85, 95 105 C88 130, 130 140, 155 145 C180 150, 210 160, 205 185 C200 210, 160 220, 140 215 C120 210, 105 195, 110 175" 
+        stroke="url(#logoGrad)" stroke-width="12" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  
+  <!-- S inner decorative stroke -->
+  <path d="M145 95 C135 105, 115 105, 115 120 C115 135, 140 142, 155 145" 
+        stroke="url(#logoGradLight)" stroke-width="5" fill="none" stroke-linecap="round"/>
+  
+  <!-- S bottom decorative curl -->
+  <path d="M110 175 C105 160, 125 150, 140 160 C155 170, 145 185, 130 195 C115 205, 95 210, 80 225 C65 240, 75 260, 100 265 C120 268, 145 260, 155 245" 
+        stroke="url(#logoGrad)" stroke-width="10" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  
+  <!-- V integrated with S — right side -->
+  <!-- V left stroke merging from S -->
+  <path d="M155 80 C160 90, 135 150, 125 200 C118 235, 140 270, 150 285" 
+        stroke="url(#logoGrad)" stroke-width="10" fill="none" stroke-linecap="round"/>
+  
+  <!-- V right stroke -->
+  <path d="M210 75 C205 90, 185 170, 170 230 C160 260, 155 275, 150 285" 
+        stroke="url(#logoGrad)" stroke-width="10" fill="none" stroke-linecap="round"/>
+  
+  <!-- V top right flourish -->
+  <path d="M210 75 C225 65, 235 50, 225 40 C215 32, 200 40, 195 55" 
+        stroke="url(#logoGradLight)" stroke-width="6" fill="none" stroke-linecap="round"/>
+
+  <!-- Diamond accent at bottom of V -->
+  <path d="M150 285 L145 292 L150 300 L155 292 Z" fill="url(#logoGrad)"/>
+
+  <!-- SV Text below -->
+  <text x="150" y="340" text-anchor="middle" font-family="'Georgia', 'Times New Roman', serif" 
+        font-weight="700" font-size="32" fill="#2c4f5e" letter-spacing="8">SV</text>
+  
+  <!-- SINCE 2000 -->
+  <text x="150" y="370" text-anchor="middle" font-family="'Inter', 'Arial', sans-serif" 
+        font-weight="400" font-size="16" fill="#6a8a9a" letter-spacing="6">SINCE 2000</text>
+</svg>

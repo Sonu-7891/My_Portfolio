@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="64" y2="64" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#0A0E1A"/>
+      <stop offset="100%" stop-color="#0D1528"/>
+    </linearGradient>
+    <linearGradient id="lg" x1="15" y1="8" x2="50" y2="56" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#93C5FD"/>
+      <stop offset="50%" stop-color="#A78BFA"/>
+      <stop offset="100%" stop-color="#22D3EE"/>
+    </linearGradient>
+    <filter id="g">
+      <feGaussianBlur stdDeviation="1" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+  <rect width="64" height="64" rx="14" fill="url(#bg)"/>
+  <rect x="1" y="1" width="62" height="62" rx="13" fill="none" stroke="url(#lg)" stroke-width="1" opacity="0.3"/>
+  <!-- S curve -->
+  <path d="M32 12 C38 10, 42 14, 40 18 C38 22, 30 20, 28 24 C26 28, 34 30, 36 32 C38 34, 42 36, 40 40 C38 44, 30 46, 26 42" 
+        stroke="url(#lg)" stroke-width="3.5" fill="none" stroke-linecap="round" filter="url(#g)"/>
+  <!-- V strokes -->
+  <path d="M30 16 L34 50 L46 16" 
+        stroke="url(#lg)" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round" filter="url(#g)"/>
+  <!-- Bottom curl -->
+  <path d="M26 42 C24 38, 28 36, 30 38 C32 40, 28 44, 22 48 C18 50, 22 54, 28 54" 
+        stroke="url(#lg)" stroke-width="2.5" fill="none" stroke-linecap="round" filter="url(#g)"/>
+  <!-- Accent dot -->
+  <circle cx="32" cy="11" r="1.5" fill="#60A5FA" opacity="0.8">
+    <animate attributeName="opacity" values="0.4;1;0.4" dur="3s" repeatCount="indefinite"/>
+  </circle>
+</svg>

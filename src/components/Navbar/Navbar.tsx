@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { NAV_LINKS } from '@/data/portfolioData';
+import svLogoNav from '@/assets/sv-logo-nav.svg';
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -10,7 +11,9 @@ const Navbar = () => {
     <>
       <nav id="nav">
         <div className="nav-inner">
-          <div className="nav-logo">SV</div>
+          <a href="#hero" className="nav-logo" aria-label="SV Home">
+            <img src={svLogoNav} alt="SV" className="nav-logo-img" />
+          </a>
           <ul className="nav-links">
             {NAV_LINKS.map((link) => (
               <li key={link.href}>
