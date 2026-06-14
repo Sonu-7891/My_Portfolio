@@ -57,8 +57,19 @@
 }
 
 /* ═══════════════════════════════════════════════
-   CURSOR SYSTEM — Dot · Ring · Glass Orb
+   CURSOR SYSTEM — Dot · Ring · Particle Trail
 ══════════════════════════════════════════════ */
+
+/* Full-screen canvas for particle trail */
+#cursor-particles {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 9998;
+  pointer-events: none;
+}
 
 /* Precision dot — snaps exactly to mouse */
 #cursor-dot {
@@ -94,163 +105,9 @@
               border-color 0.35s ease;
 }
 
-/* ── Glass Orb — 3D crystal ball cursor ──────────
-   Always visible, scales up on hover (active)
-────────────────────────────────────────────── */
-
-#cursor-orb {
-  position: fixed;
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  pointer-events: none;
-  z-index: 9999;
-  transform: translate(-50%, -50%);
-
-  /* Violet ring border */
-  border: 1.5px solid rgba(167, 139, 250, 0.4);
-
-  /* Outer glow */
-  box-shadow:
-    0 0 12px rgba(124, 58, 237, 0.15),
-    0 0 30px rgba(124, 58, 237, 0.08),
-    inset 0 0 15px rgba(124, 58, 237, 0.06);
-
-  overflow: hidden;
-  transition:
-    width 0.38s cubic-bezier(0.34,1.56,0.64,1),
-    height 0.38s cubic-bezier(0.34,1.56,0.64,1),
-    border-color 0.3s ease,
-    box-shadow 0.3s ease,
-    opacity 0.3s ease;
-}
-
-/* 3D sphere body — radial gradient for depth illusion */
-#cursor-orb-body {
-  position: absolute;
-  inset: 0;
-  border-radius: 50%;
-  background: radial-gradient(
-    ellipse at 35% 30%,
-    rgba(255, 255, 255, 0.12) 0%,
-    rgba(167, 139, 250, 0.06) 30%,
-    rgba(124, 58, 237, 0.04) 50%,
-    rgba(10, 14, 26, 0.25) 70%,
-    rgba(10, 14, 26, 0.45) 100%
-  );
-  /* Glass backdrop */
-  backdrop-filter: blur(2px) brightness(1.15) saturate(1.3);
-  -webkit-backdrop-filter: blur(2px) brightness(1.15) saturate(1.3);
-}
-
-/* Horizontal specular band — the bright light streak across center */
-#cursor-orb-band {
-  position: absolute;
-  top: 38%;
-  left: -10%;
-  width: 120%;
-  height: 24%;
-  border-radius: 50%;
-  background: linear-gradient(
-    to bottom,
-    transparent 0%,
-    rgba(255, 255, 255, 0.06) 20%,
-    rgba(255, 255, 255, 0.25) 45%,
-    rgba(255, 255, 255, 0.35) 50%,
-    rgba(255, 255, 255, 0.25) 55%,
-    rgba(255, 255, 255, 0.06) 80%,
-    transparent 100%
-  );
-  filter: blur(1px);
-  opacity: 0.7;
-}
-
-/* Top-left Fresnel highlight — classic sphere shine */
-#cursor-orb-shine {
-  position: absolute;
-  top: 8%;
-  left: 12%;
-  width: 40%;
-  height: 35%;
-  border-radius: 50%;
-  background: radial-gradient(
-    ellipse at 50% 50%,
-    rgba(255, 255, 255, 0.45) 0%,
-    rgba(255, 255, 255, 0.15) 40%,
-    transparent 70%
-  );
-  filter: blur(2px);
-  transform: rotate(-25deg);
-}
-
-/* Center crosshair dot */
-#cursor-orb-center {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 4px;
-  height: 4px;
-  border-radius: 50%;
-  background: rgba(167, 139, 250, 0.6);
-  box-shadow: 0 0 6px rgba(167, 139, 250, 0.8);
-  transform: translate(-50%, -50%);
-}
-
-/* ── ACTIVE: orb scales up + glows brighter on hover ── */
-#cursor-orb.active {
-  width: 80px;
-  height: 80px;
-  border-color: rgba(167, 139, 250, 0.6);
-  box-shadow:
-    0 0 16px rgba(124, 58, 237, 0.3),
-    0 0 40px rgba(124, 58, 237, 0.15),
-    0 0 60px rgba(124, 58, 237, 0.08),
-    inset 0 0 20px rgba(124, 58, 237, 0.1);
-}
-
-#cursor-orb.active #cursor-orb-body {
-  background: radial-gradient(
-    ellipse at 35% 30%,
-    rgba(255, 255, 255, 0.18) 0%,
-    rgba(167, 139, 250, 0.1) 30%,
-    rgba(124, 58, 237, 0.08) 50%,
-    rgba(10, 14, 26, 0.3) 70%,
-    rgba(10, 14, 26, 0.5) 100%
-  );
-  backdrop-filter: blur(6px) brightness(1.3) saturate(1.5);
-  -webkit-backdrop-filter: blur(6px) brightness(1.3) saturate(1.5);
-}
-
-#cursor-orb.active #cursor-orb-band {
-  opacity: 0.9;
-}
-
-#cursor-orb.active #cursor-orb-shine {
-  background: radial-gradient(
-    ellipse at 50% 50%,
-    rgba(255, 255, 255, 0.6) 0%,
-    rgba(255, 255, 255, 0.2) 40%,
-    transparent 70%
-  );
-}
-
-#cursor-orb.active #cursor-orb-center {
-  width: 5px;
-  height: 5px;
-  background: rgba(167, 139, 250, 0.8);
-  box-shadow: 0 0 10px rgba(167, 139, 250, 1);
-}
-
-/* CLICKED: burst scale */
-#cursor-orb.clicked {
-  transform: translate(-50%, -50%) scale(1.2);
-  transition: transform 0.2s cubic-bezier(0.34,1.56,0.64,1);
-}
-
 /* Hide everything when cursor leaves page */
 .cursor-hidden #cursor-dot,
-.cursor-hidden #cursor-ring,
-.cursor-hidden #cursor-orb {
+.cursor-hidden #cursor-ring {
   opacity: 0 !important;
 }
 
